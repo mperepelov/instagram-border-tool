@@ -8,7 +8,6 @@ const ImageBorderApp = () => {
   const [processedImage, setProcessedImage] = useState(null);
   const [borderColor, setBorderColor] = useState('#FFFFFF');
   const [borderWidth, setBorderWidth] = useState(0);
-  const [uploadProgress, setUploadProgress] = useState(0);
   const fileInputRef = useRef(null);
 
   // Instagram standard aspect ratios
@@ -21,39 +20,15 @@ const ImageBorderApp = () => {
   const handleImageUpload = async (event) => {
     const file = event.target.files[0];
     if (file) {
-      // Reset progress and image states
-      setUploadProgress(0);
-      setOriginalImage(null);
-      setProcessedImage(null);
-
       const reader = new FileReader();
-
-      // Track reading progress
-      reader.onprogress = (event) => {
-        if (event.lengthComputable) {
-          const percentLoaded = Math.round((event.loaded / event.total) * 100);
-          setUploadProgress(percentLoaded);
-        }
-      };
-
-      reader.onloadstart = () => {
-        setUploadProgress(0);
-      };
-
       reader.onloadend = async () => {
         const img = new Image();
         img.onload = () => {
           setOriginalImage(img);
-          // Complete progress when image is fully loaded
-          setUploadProgress(100);
-        };
-        img.onerror = () => {
-          setUploadProgress(0);
-          alert('Error loading image. Please try again.');
+          setProcessedImage(null); // Reset processed image
         };
         img.src = reader.result;
       };
-
       reader.readAsDataURL(file);
     }
   };
@@ -121,27 +96,12 @@ const ImageBorderApp = () => {
 
       <div className="app-layout">
         <div className="controls-section">
-          <div className="file-upload-container">
-            <input
-              type="file"
-              accept="image/jpeg,image/png"
-              onChange={handleImageUpload}
-              ref={fileInputRef}
-              className="file-input"
-            />
-
-            {uploadProgress > 0 && (
-              <div className="progress-container">
-                <div
-                  className="progress-bar"
-                  style={{ width: `${uploadProgress}%` }}
-                ></div>
-                <span className="progress-text">
-                  {uploadProgress}% Loaded
-                </span>
-              </div>
-            )}
-          </div>
+          <input
+            type="file"
+            accept="image/jpeg,image/png"
+            onChange={handleImageUpload}
+            ref={fileInputRef}
+          />
 
           <div className="color-picker-container">
             <label>Border Color</label>
