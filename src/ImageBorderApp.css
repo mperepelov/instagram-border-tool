@@ -1,0 +1,118 @@
+.instagram-border-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+.instagram-border-container h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.app-layout {
+    display: flex;
+    gap: 20px;
+}
+
+.controls-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.preview-section {
+    flex: 1;
+}
+
+.color-picker-container,
+.border-width-container {
+    margin-bottom: 15px;
+}
+
+.color-picker-container label,
+.border-width-container label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+input[type="file"] {
+    margin-bottom: 15px;
+}
+
+input[type="number"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.ratio-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.ratio-buttons button {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    transition: opacity 0.3s;
+}
+
+.ratio-buttons button:hover {
+    opacity: 0.8;
+}
+
+.square-ratio {
+    background-color: #3498db;
+}
+
+.portrait-ratio {
+    background-color: #2ecc71;
+}
+
+.landscape-ratio {
+    background-color: #9b59b6;
+}
+
+.processed-image-container {
+    text-align: center;
+}
+
+.processed-image {
+    max-width: 100%;
+    margin-bottom: 15px;
+}
+
+.download-button {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.download-button:hover {
+    background-color: #c0392b;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .app-layout {
+        flex-direction: column;
+    }
+
+    .ratio-buttons {
+        flex-direction: column;
+    }
+
+    .ratio-buttons button {
+        margin-bottom: 10px;
+    }
+}
