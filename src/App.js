@@ -25,6 +25,7 @@ const ImageBorderApp = () => {
         const img = new Image();
         img.onload = () => {
           setOriginalImage(img);
+          setProcessedImage(null); // Reset processed image
         };
         img.src = reader.result;
       };
@@ -41,27 +42,20 @@ const ImageBorderApp = () => {
     const targetAspectRatio = INSTAGRAM_RATIOS[ratio];
     const originalRatio = originalImage.width / originalImage.height;
 
-    let canvasWidth, canvasHeight, drawX, drawY, drawWidth, drawHeight;
+    let canvasWidth, canvasHeight;
 
+    // Determine canvas dimensions based on target ratio and original image
     if (originalRatio > targetAspectRatio) {
       // Image is wider than target ratio
-      canvasHeight = originalImage.height;
-      canvasWidth = canvasHeight * targetAspectRatio;
-      drawX = (canvasWidth - originalImage.width) / 2;
-      drawY = 0;
-      drawWidth = originalImage.width;
-      drawHeight = originalImage.height;
-    } else {
-      // Image is taller than target ratio
       canvasWidth = originalImage.width;
       canvasHeight = canvasWidth / targetAspectRatio;
-      drawX = 0;
-      drawY = (canvasHeight - originalImage.height) / 2;
-      drawWidth = originalImage.width;
-      drawHeight = originalImage.height;
+    } else {
+      // Image is taller than target ratio
+      canvasHeight = originalImage.height;
+      canvasWidth = canvasHeight * targetAspectRatio;
     }
 
-    // Set canvas size
+    // Add border width to canvas
     canvas.width = canvasWidth + 2 * borderWidth;
     canvas.height = canvasHeight + 2 * borderWidth;
 
@@ -69,13 +63,17 @@ const ImageBorderApp = () => {
     ctx.fillStyle = borderColor;
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
+    // Calculate position to center the original image
+    const drawX = (canvas.width - originalImage.width) / 2;
+    const drawY = (canvas.height - originalImage.height) / 2;
+
     // Draw original image
     ctx.drawImage(
       originalImage,
-      drawX + borderWidth,
-      drawY + borderWidth,
-      drawWidth,
-      drawHeight
+      drawX,
+      drawY,
+      originalImage.width,
+      originalImage.height
     );
 
     // Convert to high-quality PNG
