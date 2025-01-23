@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/instagram-border-tool/static/css/main.a7dfd083.css",
-    "main.js": "/instagram-border-tool/static/js/main.8c104e75.js",
+    "main.css": "/instagram-border-tool/static/css/main.cf7795ea.css",
+    "main.js": "/instagram-border-tool/static/js/main.b5afe8b8.js",
     "index.html": "/instagram-border-tool/index.html",
-    "main.a7dfd083.css.map": "/instagram-border-tool/static/css/main.a7dfd083.css.map",
-    "main.8c104e75.js.map": "/instagram-border-tool/static/js/main.8c104e75.js.map"
+    "main.cf7795ea.css.map": "/instagram-border-tool/static/css/main.cf7795ea.css.map",
+    "main.b5afe8b8.js.map": "/instagram-border-tool/static/js/main.b5afe8b8.js.map"
   },
   "entrypoints": [
-    "static/css/main.a7dfd083.css",
-    "static/js/main.8c104e75.js"
+    "static/css/main.cf7795ea.css",
+    "static/js/main.b5afe8b8.js"
   ]
 }
